@@ -89,16 +89,31 @@
         //use the form paramters
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-          echo "var name = {$_POST['name']};";
-          echo "var genre = {$_POST['genre']};";
-          echo "var city = {$_POST['city']};";
+          //name
+          if ($_POST['name'] != ''){
+            echo "var name = \"" . $_POST['name'] . "\";";
+          }
+          else echo "var name = \"null\";";
+
+          //genre
+          if ($_POST['genre'] != ''){
+            echo "var genre = \"" . $_POST['genre'] . "\";";
+          }
+          else echo "var genre = \"null\";";
+
+          //city
+          if ($_POST['city'] != ''){
+            echo "var city = \"" . $_POST['city'] . "\";";
+          }
+          else echo "var city = \"null\";";
         }
-		//use default parameters
+
+		    //use default parameters
         else
         {
-          echo "var name = 'hey';";
-          echo "var genre = 'hey';";
-          echo "var city = 'hey';";
+          echo "var name = 'null';";
+          echo "var genre = 'null';";
+          echo "var city = 'null;';";
         }
 
       ?>
@@ -108,7 +123,7 @@
       //start db call
       $(document).ready(function() {
         $.ajax({
-          url: "http://unstoppabledesignstudio.com/filter.php",
+          url: "filter.php",
           type: "POST",
           data: {"name": name, "genre": genre, "city": city},
 
@@ -116,9 +131,7 @@
 
           //make tables
           success: function(data)
-          {
-            G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
-            
+          {           
             for (i = 0; i < data.length; i++)
             {
               //if a distribution center
