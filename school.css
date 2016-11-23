@@ -1,0 +1,21 @@
+h1 {
+  color: white;
+}
+
+.form-group{
+  background-color: rgba(17,14,14) ;
+}
+.title{
+  color: white;
+}
+
+.info{
+  background-color: maroon;
+  height:100px;
+  color: white;
+}
+
+td {
+	color: white;
+	margin-right: 10px;
+}

@@ -2,7 +2,7 @@
   session_start();
 
   if(!isset($_SESSION["username"])){
-    window.location.href='http://unstoppabledesignstudio.com/index.php';
+   echo "window.location.href='http://unstoppabledesignstudio.com/index.php'";
   }
 ?>
 
@@ -11,10 +11,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Game Rental</title>
+	<script src= "script.js"></script>
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="school.css">
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -27,16 +28,14 @@
 
   <body style="background-color:rgba(10,11,49,1.00)">
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="span12" style="position: relative; background-color:maroon; width: 100%; top: 100px; height: 100px; display: table;">
-          <h1 style="text-align:center; color: white;">Flash Game Rental</h1>
+        <div class="span12" style="position: relative; background-color:maroon; width: 100%; height: 70px; display: table;">
+          <h2 style="text-align:center; color: white;">Flash Game Rental</h2>
         </div>
       </div>
     </div>
-    
-    <h1 style="position: absolute; color: orange; top: 200px; left: 35%;">You made it to the home page</h1>
-
+	<div style="height:50px;">.</div>
     <form class="form-inline" method="post" name="filter">
       <div class="form-group" style="background-color: rgba(27,24,24,1.00);position: relative; display:inline-block; vertical-align:middle; float:none; width: 100%; margin-left:auto; margin-right:auto; top:15px; height: 170px;">
         <label for="filter-name" class="title" style="color: white; top: 10px; width: 100%">Name:</label>
@@ -76,7 +75,7 @@
       </tr>
     </table>
 
-    <button type='button' id='my-account-button' class="btn btn-default">My Account</button>
+    <button type='button' id='my-account-button' class="btn btn-default" onClick="toUser();">My Account</button>
 
 
     <!-- Start of script -->
@@ -90,9 +89,9 @@
         //use the form paramters
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-          echo "var name = {$_POST["name"]};";
-          echo "var genre = {$_POST["genre"]};";
-          echo "var city = {$_POST["city"]};";
+          echo "var name = {$_POST['name']};";
+          echo "var genre = {$_POST['genre']};";
+          echo "var city = {$_POST['city']};";
         }
 
         //use default parameters
@@ -119,6 +118,8 @@
           //make tables
           success: function(data)
           {
+            G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
+            
             for (i = 0, i < data.length; i++)
             {
               //if a distribution center

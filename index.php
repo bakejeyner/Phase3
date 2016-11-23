@@ -1,6 +1,13 @@
 <?php
-session_start();
+ session_start();
+    session_unset();
+    session_destroy();
+    session_write_close();
+    setcookie(session_name(),'',0,'/');
+    session_regenerate_id(true);
+	session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,6 +16,9 @@ session_start();
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+  <link rel="stylesheet" href="school.css">
+
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -17,7 +27,7 @@ session_start();
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script scr="script.js"></script>
+  <script src="script.js"></script>
   </head>
 
   <body style="background-color:rgba(10,11,49,1.00)">
@@ -32,7 +42,7 @@ session_start();
           <form class="form-inline" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" name="sign-in">
             <div class="form-group" style="background-color: rgba(27,24,24,1.00);position: relative; display:inline-block; vertical-align:middle; float:none; width: 100%; margin-left:auto; margin-right:auto; top:15px; height: 170px;">
               <label for="usr" class="title" style="color: white; top: 10px; width: 100%">Username:</label>
-              <input type="text" class="form-control" id="usr" style="width: 100%;" name="username" required>
+              <input type="text" class="form-control" id="usr" style="width: 100%;" name="uname" required>
 
               <label for="pwd" class="title" style="color: white; position: relative;top: 10px; width: 100%;">Password:</label>
               <input type="password" class="form-control" id="pwd" style="position:relative; top:10px; width: 100%;" name="password" required>
@@ -48,7 +58,7 @@ session_start();
       $servername= "localhost";
       $username="unstopq7_admin";
       $password="db@dmin23";
-	  $db="unstopq7_gameRental";
+	    $db="unstopq7_gameRental";
 
       $conn = new mysqli($servername, $username, $password, $db);
 
@@ -59,14 +69,15 @@ session_start();
 
       if($_SERVER["REQUEST_METHOD"] == "POST")
       {
-        $username = stripping($_REQUEST["username"]);
-        $password = stripping($_REQUEST["password"]);      		  
-		
-		$sql1 = "SELECT username FROM Users WHERE username = '$username'";//you want to match these usernames
+        $uname = stripping($_REQUEST["uname"]);
+        $password = stripping($_REQUEST["password"]);
+
+		$sql1 = "SELECT username FROM Users WHERE username = '$uname'";//you want to match these usernames
 		$sql2 = "SELECT username FROM Users WHERE password = '$password'";
+
 		$result1 = $conn->query($sql1);
 		$result2 = $conn->query($sql2);
-		
+				
 		if($result1->num_rows > 0)
 		{
 			if($result2->num_rows > 0)
@@ -75,7 +86,7 @@ session_start();
 				$row2 = $result2->fetch_assoc();
 				if($row1["username"] == $row2["username"])
 				{
-					$_SESSION["username"]=$row1["username"];
+					$_SESSION["username"]=$uname;
 					echo "<script>window.location.href='http://unstoppabledesignstudio.com/home.php';</script>";
 				}
 				else
@@ -110,6 +121,6 @@ session_start();
 
 
     ?>
-
+	<script>var hello = "Rameal"</script>
   </body>
 </html>

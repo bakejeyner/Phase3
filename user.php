@@ -48,7 +48,7 @@
 				echo "<h1 style='color:white'>Connection Successful</h1>";
 			}
 		$uname = stripping($_SESSION["username"]);
-		$sql = "SELECT O.name, O.did, O.day_received, O.day_returned FROM Orders O WHERE O.username = '".$uname."'"; //UNION SELECT `P.name`, `P.sid`, `P.day_recieved`, `P.day_returned` FROM `Pickup P` WHERE `P.username` = '$uname' ORDER BY `day_received` DESC LIMIT 5;";
+		$sql = "SELECT O.name, O.did, O.day_received, O.day_returned FROM Orders O WHERE O.username = '$uname';"; //UNION SELECT `P.name`, `P.sid`, `P.day_recieved`, `P.day_returned` FROM `Pickup P` WHERE `P.username` = '$uname' ORDER BY `day_received` DESC LIMIT 5;";
 		$result = $conn->query($sql);
 	?>
 
@@ -90,7 +90,7 @@
 		while($row1 = $result->fetch_assoc())
 		{
 				echo "<tr>";
-				echo "<td>".$row1["O.name"]."</td>";
+				echo "<td>".$row1["name"]."</td>";
 				echo "<td>".$row1["did"]."</td>";
 				echo "<td>".$row1["day_received"]."</td>";
 				echo "<td>".$row1["day_returned"]."</td>";

@@ -14,3 +14,10 @@ var ReactDOM = require('react-dom');
 ReactDOM.render(newone, document.getElementById('root'));*/
 
 //ReactDOM.render(<newHead/>, document.getElementById('app'));
+function toUser(){
+	window.location.href="http://unstoppabledesignstudio.com/user.php";
+}
+
+function backHome(){
+	window.location.href="http://unstoppabledesignstudio.com/home.php";
+}
