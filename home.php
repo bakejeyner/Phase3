@@ -167,7 +167,13 @@
                 $("#filter-table-store").append("</tr>");
               }
             }
+          }
 
+          error: function(xhr, ajaxOptions, thrownError)
+          {
+            alert(xhr.status);
+            alert(xhr.responseText);
+            alert(thrownError);
           }
         })
       })

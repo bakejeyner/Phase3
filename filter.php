@@ -24,15 +24,15 @@
 EOT;
 
   if ($_POST["name"] !== "null") {
-    $sql_distribution .= " AND G.name = '".$_POST["name"]."'";
+    $sql_distribution .= " AND G.name = '" . $_POST["name"] . "'";
   }
 
   if ($_POST["genre"] !== "null") {
-    $sql_distribution .= " AND G.genre = '".$_POST["genre"]."'";
+    $sql_distribution .= " AND G.genre = '" . $_POST["genre"] . "'";
   }
 
   if ($_POST["city"] !== "null") {
-    $sql_distribution .= " AND L.city = '".$_POST["city"]."'";
+    $sql_distribution .= " AND L.city = '" . $_POST["city"] . "'";
   }
 
 
@@ -46,21 +46,30 @@ EOT;
 
   if ($_POST["name"] !== "null") 
   {
-    $sql_store .= " AND G.name = '".$_POST["name"]."'";
+    $sql_store .= " AND G.name = '" . $_POST["name"] . "'";
   }
 
   if ($_POST["genre"] !== "null") {
-    $sql_store .= " AND G.genre = '".$_POST["genre"]."'";
+    $sql_store .= " AND G.genre = '" . $_POST["genre"] . "'";
   }
 
   if ($_POST["city"] !== "null") {
-    $sql_store .= " AND L.city = '".$_POST["city"]."'";
+    $sql_store .= " AND L.city = '" . $_POST["city"] . "'";
   }
 
 
   //results
   $result_distribution = $conn->query($sql_distribution);
+  if($conn->connect_error)
+  {
+    die("Result query failed: ". $conn->connect_error);
+  }
+
   $result_store = $conn->query($sql_store);
+  if($conn->connect_error)
+  {
+    die("Store query failed: ". $conn->connect_error);
+  }
 
   //array to push to
   $result = [];
@@ -75,6 +84,7 @@ EOT;
     $result[] = $row;
   }
 
+  header('Content-Type: application/json');
   echo json_encode($result);
 
  ?>
