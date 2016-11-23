@@ -75,7 +75,7 @@
       </tr>
     </table>
 
-    <button type='button' id='my-account-button' class="btn btn-default" onClick="toUser();">My Account</button>
+    <button type='button' id='my-account-button' class="btn btn-default" onClick="toUser()">My Account</button>
 
 
     <!-- Start of script -->
@@ -93,13 +93,12 @@
           echo "var genre = {$_POST['genre']};";
           echo "var city = {$_POST['city']};";
         }
-
-        //use default parameters
+		//use default parameters
         else
         {
-          echo "var name = 'null';";
-          echo "var genre = 'null';";
-          echo "var city = 'null';";
+          echo "var name = 'HEY';";
+          echo "var genre = 'hey';";
+          echo "var city = 'hey';";
         }
 
       ?>
@@ -120,7 +119,7 @@
           {
             G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
             
-            for (i = 0, i < data.length; i++)
+            for (i = 0; i < data.length; i++)
             {
               //if a distribution center
               if (data[i][3] > 20)
