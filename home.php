@@ -96,7 +96,7 @@
 		//use default parameters
         else
         {
-          echo "var name = 'HEY';";
+          echo "var name = 'hey';";
           echo "var genre = 'hey';";
           echo "var city = 'hey';";
         }
@@ -108,7 +108,7 @@
       //start db call
       $(document).ready(function() {
         $.ajax({
-          url: "filter.php",
+          url: "http://unstoppabledesignstudio.com/filter.php",
           type: "POST",
           data: {"name": name, "genre": genre, "city": city},
 
@@ -196,10 +196,10 @@
 
 
 
-      //my account click
+      /*//my account click
       $("#my-account-button").click(function() {
         window.location.href='http://unstoppabledesignstudio.com/my-account.php';
-      })
+      })*/
 
     </script>
 

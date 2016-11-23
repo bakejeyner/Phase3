@@ -1,6 +1,6 @@
 <?php
 
-  seesion_start();
+  session_start();
 
   $_SESSION["location_id"] = $_POST["location_id"];
 

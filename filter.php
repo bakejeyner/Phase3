@@ -16,23 +16,23 @@
   }
 
   //make the sql strings
-  $sql_distribution = <<<EOT
+  $sql_distribution= <<<EOT
     SELECT G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented 
     FROM games_in_dist G, distribution_center_location L 
     WHERE 
-    G.did = L.did
-EOT
+    G.did = L.did 
+EOT;
 
-  if ($_POST["name"}] !== "null") {
-    $sql_distribution .= " AND G.name = '$_POST["name"}]'";
+  if ($_POST["name"] !== "null") {
+    $sql_distribution .= " AND G.name = '".$_POST["name"]."'";
   }
 
-  if ($_POST["genre"}] !== "null") {
-    $sql_distribution .= " AND G.genre = '$_POST["genre"}]'";
+  if ($_POST["genre"] !== "null") {
+    $sql_distribution .= " AND G.genre = '".$_POST["genre"]."'";
   }
 
-  if ($_POST["city"}] !== "null") {
-    $sql_distribution .= " AND L.city = '$_POST["city"}]'";
+  if ($_POST["city"] !== "null") {
+    $sql_distribution .= " AND L.city = '".$_POST["city"]."'";
   }
 
 
@@ -42,18 +42,19 @@ EOT
     FROM games_in_dist G, store_location L 
     WHERE 
     G.did = L.did
-EOT
+EOT;
 
-  if ($_POST["name"}] !== "null") {
-    $sql_store .= " AND G.name = '$_POST["name"}]'";
+  if ($_POST["name"] !== "null") 
+  {
+    $sql_store .= " AND G.name = '".$_POST["name"]."'";
   }
 
-  if ($_POST["genre"}] !== "null") {
-    $sql_store .= " AND G.genre = '$_POST["genre"}]'";
+  if ($_POST["genre"] !== "null") {
+    $sql_store .= " AND G.genre = '".$_POST["genre"]."'";
   }
 
-  if ($_POST["city"}] !== "null") {
-    $sql_store .= " AND L.city = '$_POST["city"}]'";
+  if ($_POST["city"] !== "null") {
+    $sql_store .= " AND L.city = '".$_POST["city"]."'";
   }
 
 
