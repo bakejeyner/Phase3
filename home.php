@@ -119,8 +119,6 @@
           //make tables
           success: function(data)
           {
-            G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
-            
             for (i = 0, i < data.length; i++)
             {
               //if a distribution center
