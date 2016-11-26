@@ -10,11 +10,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Game Rental</title>
+<link rel="stylesheet" href="http://unstoppabledesignstudio.com/school.css">
+<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-
-	<link rel="stylesheet" href="school.css">
 
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -43,12 +43,8 @@
       		{
         		die("Connection failed: ". $conn->connect_error);
 	        }
-			else
-			{
-				echo "<h1 style='color:white'>Connection Successful</h1>";
-			}
 		$uname = stripping($_SESSION["username"]);
-		$sql = "SELECT O.name, O.did, O.day_received, O.day_returned FROM Orders O WHERE O.username = '$uname';"; //UNION SELECT `P.name`, `P.sid`, `P.day_recieved`, `P.day_returned` FROM `Pickup P` WHERE `P.username` = '$uname' ORDER BY `day_received` DESC LIMIT 5;";
+		$sql = "SELECT O.name, O.did, O.day_received, O.day_returned FROM Orders O WHERE O.username = '$uname' UNION SELECT P.name, P.sid, P.day_recieved, P.day_returned FROM Pickup P WHERE P.username = '$uname' ORDER BY day_received DESC LIMIT 5;";
 		$result = $conn->query($sql);
 	?>
 
@@ -59,13 +55,19 @@
         </div>
       </div>
       <div class="row">
-      	<div class="span12">
-        	<h5 onClick="backHome();" style="color:white;">Home</h5>
+      <div class="col-sm-4">
+        	<h6>.</h6>
+        </div>
+      	<div class="col-sm-4">
+        	<button type='button' id='my-account-button' class="btn btn-default" onClick="backHome()" style="margin-left: 200px;">Home</button>
+        </div>
+        <div class="col-sm-4">
+        	<h6>.</h6>
         </div>
       </div>
-		<div class="row" style="margin-top:40px; margin-right:10px;">
-			<div class="col-sm-4">
-				<?php echo "<h1 class='info'>Welcome Back $uname</h1>";?>
+		<div class="row" style="margin-top:40px; margin-right:15px;">
+			<div class="col-sm-12">
+				<?php echo "<h1 class='info2'>Welcome Back $uname</h1>";?>
             </div>
         </div>
         <div class="row">
@@ -74,26 +76,31 @@
 			</div>
 		</div>
         <div class="row">
-        <table>
-        	<tr>
-            	<td>Name</td>
-                <td>did</td>
-                <td>day_received</td>
-                <td>day_returned</td>
+			<div class="col-sm-12">
+				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px">5 Recent Orders/Pickups</h3>
+			</div>
+		</div>
+        <div class="row">
+        <table class="main">
+        	<tr class = "tr-main">
+            	<th class = "th-main">Name</td>
+                <th class = "th-main">did</td>
+                <th class = "th-main">day_received</td>
+                <th class = "th-main">day_returned</td>
             </tr>
         <?php
 		//$result = mysql_query('$sql');		
 		//echo "$sql";
-		echo "$sql";
+		//echo "$sql";
 		//if($result->num_rows > 0)
 		//{
 		while($row1 = $result->fetch_assoc())
 		{
-				echo "<tr>";
-				echo "<td>".$row1["name"]."</td>";
-				echo "<td>".$row1["did"]."</td>";
-				echo "<td>".$row1["day_received"]."</td>";
-				echo "<td>".$row1["day_returned"]."</td>";
+				echo "<tr class = 'tr-main'>";
+				echo "<td class = 'td-main'>".$row1["name"]."</td>";
+				echo "<td class = 'td-main'>".$row1["did"]."</td>";
+				echo "<td class = 'td-main'>".$row1["day_received"]."</td>";
+				echo "<td class = 'td-main'>".$row1["day_returned"]."</td>";
 				echo "</tr>";
 		}
 	//	}
@@ -113,6 +120,59 @@
 		?>
         </table>
         </div>
+        <div class="row">
+			<div class="col-sm-12">
+				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px">Current Checked Out Games</h3>
+			</div>
+		</div>
+        <div class="row">
+        <table class="main">
+        	<tr class = "tr-main">
+            	<th class = "th-main">Name</td>
+                <th class = "th-main">day_received</td>
+                <th class = "th-main">Price</td>
+            </tr>
+        <?php
+		//$result = mysql_query('$sql');		
+		//echo "$sql";
+		//echo "$sql";
+		//if($result->num_rows > 0)
+		//{
+		$sql = "SELECT G.name, O.day_received, G.price FROM Orders O, Games G WHERE O.name = G.name AND O.username = '$uname' AND O.day_returned IS NULL UNION SELECT G.name, P.day_recieved, G.price FROM Pickup P, Games G WHERE P.name = G.name AND P.username = '$uname' AND P.day_returned IS NULL";
+	$result = $conn->query($sql);
+	$calculatePrice = 0.00;
+	if($result->num_rows > 0)
+	{
+		while($row1 = $result->fetch_assoc())
+		{
+				echo "<tr class = 'tr-main'>";
+				echo "<td class = 'td-main'>".$row1["name"]."</td>";
+				//echo "<td class = 'td-main'>".$row1["did"]."</td>";
+				echo "<td class = 'td-main'>".$row1["day_received"]."</td>";
+				echo "<td class = 'td-main'>".$row1["price"]."</td>";
+				echo "</tr>";
+				$calculatePrice += $row1["price"];
+		}
+	}
+	else
+	{
+		echo "</table>";
+		echo "<h1 class='info' style='height:30px; text-align:left; margin-left:-12px'>0 Results<h1>";
+	}
+	//	}
+		/*else
+		{
+			echo "<h1 style ='color:white;'>0 results</h1>";
+		}*/
+//		echo $calculatePrice;
+		?>
+        </table>
+        </div>
+        <div class="row">
+			<div class="col-sm-12">
+				<?php echo "<h3 class='info' style='height:30px; text-align:left; margin-left:-12px'>Total Price of Games: ".$calculatePrice."</h3>";?>
+			</div>
+		</div>
     </div>
 
 

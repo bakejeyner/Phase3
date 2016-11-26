@@ -15,7 +15,41 @@ h1 {
   color: white;
 }
 
-td {
+.info2{
+  font-family: Bungee;
+  height:100px;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.td-main {
 	color: white;
 	margin-right: 10px;
+}
+
+.main {
+	margin-top: 15px;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+tr:nth-child(even) {
+	background-color: #B9B9B9;
+}
+
+.td-main{
+	background-color: white;
+}
+
+.main, .th-main, .td-main{
+	border: 1px solid black;
+	color: black;
+}
+
+.th-main{
+	background-color: maroon;
+	height: 40px;
+	color: white;
 }
