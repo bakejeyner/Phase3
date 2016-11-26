@@ -3,7 +3,7 @@
   session_start();
 
 
-  $servername= "localhost";
+  $servername= "ftp.unstoppabledesignstudio.com:22";
   $username= "unstopq7_admin";
   $password= "db@dmin23";
   $db= "unstopq7_gameRental";

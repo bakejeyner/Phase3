@@ -131,7 +131,7 @@
 
           //make tables
           success: function(data)
-          {           
+          {
             for (i = 0; i < data.length; i++)
             {
               //if a distribution center
@@ -167,7 +167,7 @@
                 $("#filter-table-store").append("</tr>");
               }
             }
-          }
+          },
 
           error: function(xhr, ajaxOptions, thrownError)
           {
