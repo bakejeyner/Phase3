@@ -194,8 +194,8 @@
           success: function(data) {
             window.location.href='http://unstoppabledesignstudio.com/location.php';
           }
-        })
-      })
+        });
+      });
 
       //Rent Now! onlclick
       $(".rent-now-button").click(function() {
@@ -212,8 +212,8 @@
           success: function(data) {
             location.reload();
           }
-        })
-      })
+        });
+      });
 
 
 
