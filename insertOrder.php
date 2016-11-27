@@ -15,7 +15,7 @@
   $did = stripping($_POST["did"]);
   $name = stripping($_POST["name"]);
 
-  $servername= "ftp.unstoppabledesignstudio.com";
+  $servername= "localhost";
   $username= "unstopq7_admin";
   $password= "db@dmin23";
   $db= "unstopq7_gameRental";
