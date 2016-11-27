@@ -11,7 +11,19 @@
     return ($data);
   }
 
-  $servername= "ftp.unstoppabledesignstudio.com";
+  if (!isset($_POST["name"])) {
+    $_POST["name"] = 'null';
+  }
+    if (!isset($_POST["genre"])) {
+    $_POST["genre"] = 'null';
+  }
+
+  if (!isset($_POST["city"])) {
+    $_POST["city"] = 'null';
+  }
+
+
+  $servername= "localhost";
   $username= "unstopq7_admin";
   $password= "db@dmin23";
   $db= "unstopq7_gameRental";
