@@ -2,8 +2,16 @@
 
   session_start();
 
+  //stripping function
+  function stripping($data)
+  {
+    $data= trim($data);
+    $data= stripslashes($data);
+    $data = htmlspecialchars($data);
+    return ($data);
+  }
 
-  $servername= "ftp.unstoppabledesignstudio.com:22";
+  $servername= "ftp.unstoppabledesignstudio.com";
   $username= "unstopq7_admin";
   $password= "db@dmin23";
   $db= "unstopq7_gameRental";
@@ -16,71 +24,61 @@
   }
 
   //make the sql strings
-  $sql_distribution= <<<EOT
-    SELECT G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented 
-    FROM games_in_dist G, distribution_center_location L 
-    WHERE 
-    G.did = L.did 
+  $sql_distribution = <<<EOT
+SELECT G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
+FROM games_in_dist G, Distribution_Center_Location L
+WHERE G.did = L.did
 EOT;
 
   if ($_POST["name"] !== "null") {
-    $sql_distribution .= " AND G.name = '" . $_POST["name"] . "'";
+    $sql_distribution .= " AND G.name = '" . stripping($_POST["name"]) . "'";
   }
 
   if ($_POST["genre"] !== "null") {
-    $sql_distribution .= " AND G.genre = '" . $_POST["genre"] . "'";
+    $sql_distribution .= " AND G.genre = '" . stripping($_POST["genre"]) . "'";
   }
 
   if ($_POST["city"] !== "null") {
-    $sql_distribution .= " AND L.city = '" . $_POST["city"] . "'";
+    $sql_distribution .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
-
-
 
   $sql_store = <<<EOT
-    SELECT G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented 
-    FROM games_in_dist G, store_location L 
-    WHERE 
-    G.did = L.did
+SELECT G.name, G.price, G.genre, G.sid, L.city, G.quantity, G.numRented
+FROM games_in_store G, Store_Location L
+WHERE G.sid = L.sid
 EOT;
 
-  if ($_POST["name"] !== "null") 
-  {
-    $sql_store .= " AND G.name = '" . $_POST["name"] . "'";
+  if ($_POST["name"] !== "null")  {
+    $sql_store .= " AND G.name = '" . stripping($_POST["name"]) . "'";
   }
 
   if ($_POST["genre"] !== "null") {
-    $sql_store .= " AND G.genre = '" . $_POST["genre"] . "'";
+    $sql_store .= " AND G.genre = '" . stripping($_POST["genre"]) . "'";
   }
 
   if ($_POST["city"] !== "null") {
-    $sql_store .= " AND L.city = '" . $_POST["city"] . "'";
+    $sql_store .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
-
 
   //results
   $result_distribution = $conn->query($sql_distribution);
-  if($conn->connect_error)
-  {
-    die("Result query failed: ". $conn->connect_error);
+  if (!$result_distribution) {
+    die("Distribution query failed: " . $conn->connect_error);
   }
 
   $result_store = $conn->query($sql_store);
-  if($conn->connect_error)
-  {
-    die("Store query failed: ". $conn->connect_error);
+  if (!$result_store) {
+    die("Store query failed: " . $conn->connect_error);
   }
 
   //array to push to
   $result = [];
 
-  while ($row = $result_distribution->fetch_assoc())
-  {
+  while ($row = $result_distribution->fetch_assoc()){
     $result[] = $row;
   }
 
-  while ($row = $result_store->fetch_assoc())
-  {
+  while ($row = $result_store->fetch_assoc()) {
     $result[] = $row;
   }
 
