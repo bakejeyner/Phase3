@@ -138,18 +138,22 @@
               if (data[i][3] > 20)
               {
                 $("#filter-table-distribution").append("<tr>");
-                $("#filter-table-distribution").append("<td>" + data[i][0] + "</td>"); //name
-                $("#filter-table-distribution").append("<td>" + data[i][1] + "</td>"); //price
-                $("#filter-table-distribution").append("<td>" + data[i][2] + "</td>"); //genre
-                $("#filter-table-distribution").append("<td><span class='location-id'" + data[i][3] + "</span></td>"); //did
-                $("#filter-table-distribution").append("<td>" + data[i][4] + "</td>"); //city
-                $("#filter-table-distribution").append("<td>" + data[i][5] + "</td>"); //quantity
-                $("#filter-table-distribution").append("<td>" + (data[i][5] - data[i][6]) + "</td>"); //available
+                $("#filter-table-distribution").append("<td>" + data[i]["name"] + "</td>"); //name
+                $("#filter-table-distribution").append("<td>" + data[i]["price"] + "</td>"); //price
+                $("#filter-table-distribution").append("<td>" + data[i]["genre"] + "</td>"); //genre
+                $("#filter-table-distribution").append("<td><span class='location-id'" + data[i]["did"] + "</span></td>"); //did
+                $("#filter-table-distribution").append("<td>" + data[i]["city"] + "</td>"); //city
+                $("#filter-table-distribution").append("<td>" + data[i]["quantity"] + "</td>"); //quantity
+                $("#filter-table-distribution").append("<td>" + (parseInt(data[i]["quantity"]) - parseInt(data[i]["numRented"])) + "</td>"); //available
 
                 //make button only if there are available copies
-                if (data[i][5] - data[i][6] === 0) {
-                  $("#filter-table-distribution").append("<td><button type='button' class='rent-now-button' data-did='" + data[i][3] + "' data-name='" + data[i][0] + "'  >Rent Now!</button></td>"); //Rant Now!
+                if (data[i]["quantity"] - data[i]["numRented"] > 0) {
+                  $("#filter-table-distribution").append("<td><button type='button' class='rent-now-button' data-did='" + data[i]["data"] + "' data-name='" + data[i]["name"] + "'  >Rent Now!</button></td>"); //Rant Now!
                 }
+                else {
+                  $("#filter-table-distribution").append("<td>Sold Out!</td>"); //Rant Now!
+                }
+
                 $("#filter-table-distribution").append("</tr>");
               }
 
@@ -157,13 +161,13 @@
               else
               {
                 $("#filter-table-store").append("<tr>");
-                $("#filter-table-store").append("<td>" + data[i][0] + "</td>"); //name
-                $("#filter-table-store").append("<td>" + data[i][1] + "</td>"); //price
-                $("#filter-table-store").append("<td>" + data[i][2] + "</td>"); //genre
-                $("#filter-table-store").append("<td><span class='location-id'" + data[i][3] + "</span></td>"); //sid
-                $("#filter-table-store").append("<td>" + data[i][4] + "</td>"); //city
-                $("#filter-table-store").append("<td>" + data[i][5] + "</td>"); //quantity
-                $("#filter-table-store").append("<td>" + (parseInt(data[i][5]) - parseInt(data[i][6])) + "</td>"); //available
+                $("#filter-table-store").append("<td>" + data[i]["name"] + "</td>"); //name
+                $("#filter-table-store").append("<td>" + data[i]["price"] + "</td>"); //price
+                $("#filter-table-store").append("<td>" + data[i]["genre"] + "</td>"); //genre
+                $("#filter-table-store").append("<td><span class='location-id'" + data[i]["sid"] + "</span></td>"); //sid
+                $("#filter-table-store").append("<td>" + data[i]["city"] + "</td>"); //city
+                $("#filter-table-store").append("<td>" + data[i]["quantity"] + "</td>"); //quantity
+                $("#filter-table-store").append("<td>" + (parseInt(data[i]["quantity"]) - parseInt(data[i]["numRented"])) + "</td>"); //available
                 $("#filter-table-store").append("</tr>");
               }
             }
