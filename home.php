@@ -86,6 +86,8 @@
       //php to set filter parameters
       <?php
 
+        echo 'console.log("Current PHP version: ' . phpversion() . '");';
+
         //use the form paramters
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
