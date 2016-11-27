@@ -41,7 +41,6 @@
 SELECT G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
 FROM games_in_dist G, Distribution_Center_Location L
 WHERE G.did = L.did
-LIMIT 10
 EOT;
 
   if ($_POST["name"] !== "null") {
@@ -55,12 +54,12 @@ EOT;
   if ($_POST["city"] !== "null") {
     $sql_distribution .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
+  $sql_distribution .= " LIMIT 10";
 
   $sql_store = <<<EOT
 SELECT G.name, G.price, G.genre, G.sid, L.city, G.quantity, G.numRented
 FROM games_in_store G, Store_Location L
 WHERE G.sid = L.sid
-LIMIT 10
 EOT;
 
   if ($_POST["name"] !== "null")  {
@@ -74,6 +73,7 @@ EOT;
   if ($_POST["city"] !== "null") {
     $sql_store .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
+  $sql_store .= " LIMIT 10";
 
   //results
   $result_distribution = $conn->query($sql_distribution);
