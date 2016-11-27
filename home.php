@@ -113,7 +113,7 @@
         {
           echo "var name = 'null';";
           echo "var genre = 'null';";
-          echo "var city = 'null;';";
+          echo "var city = 'null';";
         }
 
       ?>
@@ -175,12 +175,10 @@
 
           error: function(xhr, ajaxOptions, thrownError)
           {
-            alert(xhr.status);
-            alert(xhr.responseText);
-            alert(thrownError);
+            console.log('error');
           }
-        })
-      })
+        });
+      });
 
 
 
@@ -188,7 +186,7 @@
       //location id clicks
       $(".location-id").click(function() {
         $.ajax({
-          url: "insertOrder.php",
+          url: "locationRedirect.php",
           type: "POST",
           data: {"location_id": parseInt($(this).innerText())},
           datatype: 'json',

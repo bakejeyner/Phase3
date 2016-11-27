@@ -11,6 +11,7 @@
     return ($data);
   }
 
+
   if (!isset($_POST["name"])) {
     $_POST["name"] = 'null';
   }
@@ -40,6 +41,7 @@
 SELECT G.name, G.price, G.genre, G.did, L.city, G.quantity, G.numRented
 FROM games_in_dist G, Distribution_Center_Location L
 WHERE G.did = L.did
+LIMIT 10
 EOT;
 
   if ($_POST["name"] !== "null") {
@@ -58,6 +60,7 @@ EOT;
 SELECT G.name, G.price, G.genre, G.sid, L.city, G.quantity, G.numRented
 FROM games_in_store G, Store_Location L
 WHERE G.sid = L.sid
+LIMIT 10
 EOT;
 
   if ($_POST["name"] !== "null")  {
@@ -94,7 +97,6 @@ EOT;
     $result[] = $row;
   }
 
-  header('Content-Type: application/json');
   echo json_encode($result);
 
  ?>
