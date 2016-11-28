@@ -24,7 +24,7 @@
   }
 
 
-  $servername= "ftp.unstoppabledesignstudio.com";
+  $servername= "localhost";
   $username= "unstopq7_admin";
   $password= "db@dmin23";
   $db= "unstopq7_gameRental";
