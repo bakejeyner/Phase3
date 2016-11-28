@@ -158,7 +158,7 @@
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["name"] + "</td>"); //name
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["price"] + "</td>"); //price
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["genre"] + "</td>"); //genre
-                $("#tr-" + i).append("<td class='td-main'><span class='location-id'" + result[i]["did"] + "</span></td>"); //did
+                $("#tr-" + i).append("<td class='td-main'><span class='location-id'>" + result[i]["did"] + "</span></td>"); //did
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["city"] + "</td>"); //city
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["quantity"] + "</td>"); //quantity
                 $("#tr-" + i).append("<td class='td-main'>" + (parseInt(result[i]["quantity"]) - parseInt(result[i]["numRented"])) + "</td>"); //available
@@ -181,7 +181,7 @@
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["name"] + "</td>"); //name
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["price"] + "</td>"); //price
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["genre"] + "</td>"); //genre
-                $("#tr-" + i).append("<td class='td-main'><span class='location-id'" + result[i]["sid"] + "</span></td>"); //sid
+                $("#tr-" + i).append("<td class='td-main'><span class='location-id'>" + result[i]["sid"] + "</span></td>"); //sid
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["city"] + "</td>"); //city
                 $("#tr-" + i).append("<td class='td-main'>" + result[i]["quantity"] + "</td>"); //quantity
                 $("#tr-" + i).append("<td class='td-main'>" + (parseInt(result[i]["quantity"]) - parseInt(result[i]["numRented"])) + "</td>"); //available
@@ -201,7 +201,7 @@
 
 
       //location id clicks
-      $(".location-id").click(function() {
+      $(".location-id").click(function(event) {
         $.ajax({
           url: "locationRedirect.php",
           type: "POST",
@@ -215,7 +215,9 @@
       });
 
       //Rent Now! onlclick
-      $(".rent-now-button").click(function() {
+      $(".rent-now-button").click(function(event) {
+        console.log('rent now button clicked');
+        console.log(this);
         var did = parseInt($(this).attr("data-did"));
         var name = $(this).attr("data-name");
 
