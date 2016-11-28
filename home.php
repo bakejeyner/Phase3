@@ -188,48 +188,46 @@
                 $("#filter-table-distribution").append("</tr>");
               }
             }
+
+            //location id clicks
+            $(".location-id").click(function(event) {
+              console.log('location-id button clicked');
+              $.ajax({
+                url: "locationRedirect.php",
+                type: "POST",
+                data: {"location_id": parseInt($(this).text())},
+                datatype: 'json',
+
+                success: function(data) {
+                  window.location.href='http://unstoppabledesignstudio.com/location.php';
+                }
+              });
+            });
+
+            //Rent Now! onlclick
+            $(".rent-now-button").click(function(event) {
+              console.log('rent now button clicked');
+              console.log(this);
+              var did = parseInt($(this).attr("data-did"));
+              var name = $(this).attr("data-name");
+
+              //ajax insert
+              $.ajax({
+                url: "insertOrder.php",
+                type: "POST",
+                data: {"did": did, "name": name},
+                datatype: 'json',
+
+                success: function(data) {
+                  location.reload();
+                }
+              });
+            });
           },
 
           error: function(xhr, ajaxOptions, thrownError)
           {
             console.log('error');
-          }
-        });
-      });
-
-
-
-
-      //location id clicks
-      $(".location-id").click(function(event) {
-        $.ajax({
-          url: "locationRedirect.php",
-          type: "POST",
-          data: {"location_id": parseInt($(this).text())},
-          datatype: 'json',
-
-          success: function(data) {
-            window.location.href='http://unstoppabledesignstudio.com/location.php';
-          }
-        });
-      });
-
-      //Rent Now! onlclick
-      $(".rent-now-button").click(function(event) {
-        console.log('rent now button clicked');
-        console.log(this);
-        var did = parseInt($(this).attr("data-did"));
-        var name = $(this).attr("data-name");
-
-        //ajax insert
-        $.ajax({
-          url: "insertOrder.php",
-          type: "POST",
-          data: {"did": did, "name": name},
-          datatype: 'json',
-
-          success: function(data) {
-            location.reload();
           }
         });
       });
