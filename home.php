@@ -134,7 +134,7 @@
           //make tables
           success: function(data)
           {
-            for (i = 0; i < data.length; i++)
+            for (i = 0; i < 50; i++)
             {
               //if a distribution center
               if (data[i][3] > 20)
