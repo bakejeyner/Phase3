@@ -77,7 +77,7 @@
 		</div>
         <div class="row">
 			<div class="col-sm-12">
-				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px">5 Recent Orders/Pickups</h3>
+				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px; font-family: Bungee">5 Recent Orders/Pickups</h3>
 			</div>
 		</div>
         <div class="row">
@@ -122,7 +122,7 @@
         </div>
         <div class="row">
 			<div class="col-sm-12">
-				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px">Current Checked Out Games</h3>
+				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px; font-family: Bungee">Current Checked Out Games</h3>
 			</div>
 		</div>
         <div class="row">
@@ -173,6 +173,53 @@
 				<?php echo "<h3 class='info' style='height:30px; text-align:left; margin-left:-12px'>Total Price of Games: ".$calculatePrice."</h3>";?>
 			</div>
 		</div>
+        <div class="row">
+			<div class="col-sm-12">
+				<h3 class="info" style="height:30px; text-align:left; margin-left:-12px; font-family: Bungee">TOP 5 POPULAR GAMES</h3>
+			</div>
+		</div>
+        <div class="row">
+        <table class="main">
+        	<tr class = "tr-main">
+            	<th class = "th-main">Name</td>
+                <th class = "th-main">Number of Pickups</td>
+            </tr>
+        <?php
+		//$result = mysql_query('$sql');		
+		//echo "$sql";
+		//echo "$sql";
+		//if($result->num_rows > 0)
+		//{
+		$sql = "SELECT P.name, (P.num_pickups + O.num_orders) AS num_rentals FROM popular_pickup P, popular_orders O WHERE P.name = O.name ORDER BY num_rentals DESC LIMIT 5";
+	$result = $conn->query($sql);
+	//$calculatePrice = 0.00;
+	if($result->num_rows > 0)
+	{
+		while($row1 = $result->fetch_assoc())
+		{
+				echo "<tr class = 'tr-main'>";
+				echo "<td class = 'td-main'>".$row1["name"]."</td>";
+				//echo "<td class = 'td-main'>".$row1["did"]."</td>";
+				//echo "<td class = 'td-main'>".$row1["day_received"]."</td>";
+				echo "<td class = 'td-main'>".$row1["num_rentals"]."</td>";
+				echo "</tr>";
+				//$calculatePrice += $row1["price"];
+		}
+	}
+	else
+	{
+		echo "</table>";
+		echo "<h1 class='info' style='height:30px; text-align:left; margin-left:-12px'>0 Results<h1>";
+	}
+	//	}
+		/*else
+		{
+			echo "<h1 style ='color:white;'>0 results</h1>";
+		}*/
+//		echo $calculatePrice;
+		?>
+        </table>
+        </div>
     </div>
 
 
