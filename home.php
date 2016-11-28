@@ -99,35 +99,24 @@
 
         echo 'console.log("Current PHP version: ' . phpversion() . '");';
 
-        //use the form paramters
-        if($_SERVER["REQUEST_METHOD"] == "POST")
-        {
-          //name
-          if ($_POST['name'] != ''){
-            echo "var name = \"" . $_POST['name'] . "\";";
-          }
-          else echo "var name = \"null\";";
-
-          //genre
-          if ($_POST['genre'] != ''){
-            echo "var genre = \"" . $_POST['genre'] . "\";";
-          }
-          else echo "var genre = \"null\";";
-
-          //city
-          if ($_POST['city'] != ''){
-            echo "var city = \"" . $_POST['city'] . "\";";
-          }
-          else echo "var city = \"null\";";
+        //name
+        if (isset($_POST['name'])) {
+          echo "var name = \"" . $_POST['name'] . "\";";
         }
+        else echo "var name = \"null\";";
 
-		    //use default parameters
-        else
-        {
-          echo "var name = 'null';";
-          echo "var genre = 'null';";
-          echo "var city = 'null';";
+        //genre
+        if (isset($_POST['genre'])) {
+          echo "var genre = \"" . $_POST['genre'] . "\";";
         }
+        else echo "var genre = \"null\";";
+
+        //city
+        if (isset($_POST['city'])) {
+          echo "var city = \"" . $_POST['city'] . "\";";
+        }
+        else echo "var city = \"null\";";
+      }
 
       ?>
 
