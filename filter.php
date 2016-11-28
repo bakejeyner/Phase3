@@ -24,7 +24,7 @@
   }
 
 
-  $servername= "localhost";
+  $servername= "ftp.unstoppabledesignstudio.com";
   $username= "unstopq7_admin";
   $password= "db@dmin23";
   $db= "unstopq7_gameRental";
@@ -54,7 +54,7 @@ EOT;
   if ($_POST["city"] !== "null") {
     $sql_distribution .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
-  $sql_distribution .= " LIMIT 10";
+  //$sql_distribution .= " LIMIT 500";
 
   $sql_store = <<<EOT
 SELECT G.name, G.price, G.genre, G.sid, L.city, G.quantity, G.numRented
@@ -73,7 +73,7 @@ EOT;
   if ($_POST["city"] !== "null") {
     $sql_store .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
-  $sql_store .= " LIMIT 10";
+  //$sql_store .= " LIMIT 500";
 
   //results
   $result_distribution = $conn->query($sql_distribution);
@@ -87,7 +87,7 @@ EOT;
   }
 
   //array to push to
-  $result = [];
+  $result = array();
 
   while ($row = $result_distribution->fetch_assoc()){
     $result[] = $row;
