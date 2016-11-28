@@ -154,7 +154,7 @@
 
                 //make button only if there are available copies
                 if (result[i]["quantity"] - result[i]["numRented"] > 0) {
-                  $("#tr-" + i).append("<td class='td-main'><button type='button' class='rent-now-button' result-did='" + result[i]["result"] + "' result-name='" + result[i]["name"] + "'  >Rent Now!</button></td>"); //Rant Now!
+                  $("#tr-" + i).append("<td class='td-main'><button type='button' class='rent-now-button' data-did='" + result[i]["did"] + "' data-name='" + result[i]["name"] + "'  >Rent Now!</button></td>"); //Rant Now!
                 }
                 else {
                   $("#tr-" + i).append("<td class='td-main'>Sold Out!</td>"); //Rant Now!
@@ -194,7 +194,7 @@
         $.ajax({
           url: "locationRedirect.php",
           type: "POST",
-          data: {"location_id": parseInt($(this).innerText())},
+          data: {"location_id": parseInt($(this).text())},
           datatype: 'json',
 
           success: function(data) {
