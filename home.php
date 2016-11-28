@@ -143,21 +143,21 @@
               //if a distribution center
               if (result[i]['did'])
               {
-                $("#filter-table-distribution").append("<tr class='tr-main'>");
-                $("#filter-table-distribution").append("<td class='td-main'>" + result[i]["name"] + "</td>"); //name
-                $("#filter-table-distribution").append("<td class='td-main'>" + result[i]["price"] + "</td>"); //price
-                $("#filter-table-distribution").append("<td class='td-main'>" + result[i]["genre"] + "</td>"); //genre
-                $("#filter-table-distribution").append("<td class='td-main'><span class='location-id'" + result[i]["did"] + "</span></td>"); //did
-                $("#filter-table-distribution").append("<td class='td-main'>" + result[i]["city"] + "</td>"); //city
-                $("#filter-table-distribution").append("<td class='td-main'>" + result[i]["quantity"] + "</td>"); //quantity
-                $("#filter-table-distribution").append("<td class='td-main'>" + (parseInt(result[i]["quantity"]) - parseInt(result[i]["numRented"])) + "</td>"); //available
+                $("#filter-table-distribution").append("<tr class='tr-main' id='tr-" + i + "'>");
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["name"] + "</td>"); //name
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["price"] + "</td>"); //price
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["genre"] + "</td>"); //genre
+                $("#tr-" + i).append("<td class='td-main'><span class='location-id'" + result[i]["did"] + "</span></td>"); //did
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["city"] + "</td>"); //city
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["quantity"] + "</td>"); //quantity
+                $("#tr-" + i).append("<td class='td-main'>" + (parseInt(result[i]["quantity"]) - parseInt(result[i]["numRented"])) + "</td>"); //available
 
                 //make button only if there are available copies
                 if (result[i]["quantity"] - result[i]["numRented"] > 0) {
-                  $("#filter-table-distribution").append("<td class='td-main'><button type='button' class='rent-now-button' result-did='" + result[i]["result"] + "' result-name='" + result[i]["name"] + "'  >Rent Now!</button></td>"); //Rant Now!
+                  $("#tr-" + i).append("<td class='td-main'><button type='button' class='rent-now-button' result-did='" + result[i]["result"] + "' result-name='" + result[i]["name"] + "'  >Rent Now!</button></td>"); //Rant Now!
                 }
                 else {
-                  $("#filter-table-distribution").append("<td class='td-main'>Sold Out!</td>"); //Rant Now!
+                  $("#tr-" + i).append("<td class='td-main'>Sold Out!</td>"); //Rant Now!
                 }
 
                 $("#filter-table-distribution").append("</tr>");
@@ -166,15 +166,15 @@
               //if a store
               else
               {
-                $("#filter-table-store").append("<tr class='tr-main'>");
-                $("#filter-table-store").append("<td class='td-main'>" + result[i]["name"] + "</td>"); //name
-                $("#filter-table-store").append("<td class='td-main'>" + result[i]["price"] + "</td>"); //price
-                $("#filter-table-store").append("<td class='td-main'>" + result[i]["genre"] + "</td>"); //genre
-                $("#filter-table-store").append("<td class='td-main'><span class='location-id'" + result[i]["sid"] + "</span></td>"); //sid
-                $("#filter-table-store").append("<td class='td-main'>" + result[i]["city"] + "</td>"); //city
-                $("#filter-table-store").append("<td class='td-main'>" + result[i]["quantity"] + "</td>"); //quantity
-                $("#filter-table-store").append("<td class='td-main'>" + (parseInt(result[i]["quantity"]) - parseInt(result[i]["numRented"])) + "</td>"); //available
-                $("#filter-table-store").append("</tr>");
+                $("#filter-table-store").append("<tr class='tr-main' id='tr-" + i + "'>");
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["name"] + "</td>"); //name
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["price"] + "</td>"); //price
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["genre"] + "</td>"); //genre
+                $("#tr-" + i).append("<td class='td-main'><span class='location-id'" + result[i]["sid"] + "</span></td>"); //sid
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["city"] + "</td>"); //city
+                $("#tr-" + i).append("<td class='td-main'>" + result[i]["quantity"] + "</td>"); //quantity
+                $("#tr-" + i).append("<td class='td-main'>" + (parseInt(result[i]["quantity"]) - parseInt(result[i]["numRented"])) + "</td>"); //available
+                $("#filter-table-distribution").append("</tr>");
               }
             }
           },
