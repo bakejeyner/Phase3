@@ -3,7 +3,9 @@
 
   if(!isset($_SESSION["username"])){
    echo "window.location.href='http://unstoppabledesignstudio.com/index.php'";
+   //echo $_SESSION["username"];
   }
+	//$uname = $_SESSION["username"];
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +36,17 @@
           <h2 style="text-align:center; color: white;">Flash Game Rental</h2>
         </div>
       </div>
+      <div class="row">
+      <div class="col-sm-4">
+        	<h6>.</h6>
+        </div>
+      	<div class="col-sm-4">
+        	<button type='button' id='my-account-button' class="btn btn-default" onClick="toUser()" style="margin-left: 200px;">My Account</button>
+        </div>
+        <div class="col-sm-4">
+        	<h6>.</h6>
+        </div>
+      </div>
     </div>
 	<div style="height:50px;">.</div>
     <form class="form-inline" method="post" name="filter">
@@ -42,7 +55,7 @@
         <input type="text" class="form-control" id="filter-name" style="width: 100%;" name="filter-name">
         <label for="filter-genre" class="title" style="color: white; top: 10px; width: 100%">Genre:</label>
         <input type="text" class="form-control" id="filter-genre" style="width: 100%;" name="filter-genre">
-        <label for="filter-city" class="title" style="color: white; top: 10px; width: 100%">Name:</label>
+        <label for="filter-city" class="title" style="color: white; top: 10px; width: 100%">City:</label>
         <input type="text" class="form-control" id="filter-city" style="width: 100%;" name="filter-city">
       </div>
       <button id="finish" type="submit" name="filter-submit" class="btn btn-default" style="position: relative; color:white; top: 25px; margin-left: 46%; width: 100px; background-color: rgb(38, 44, 52); border: none;">Submit</button>
@@ -74,8 +87,6 @@
         <th class="th-main">Available</th>
       </tr>
     </table>
-
-    <button type='button' id='my-account-button' class="btn btn-default" onClick="toUser()">My Account</button>
 
 
     <!-- Start of script -->
