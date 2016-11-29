@@ -97,9 +97,6 @@
       //php to set filter parameters
       <?php
 
-        echo 'console.log("Current PHP version: ' . phpversion() . '");';
-        echo 'console.log("' . json_encode($_POST) . '");';
-
         //name
         if (isset($_POST['filter-name'])) {
           echo "var name = \"" . $_POST['filter-name'] . "\";";
