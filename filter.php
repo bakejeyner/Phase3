@@ -54,7 +54,7 @@ EOT;
   if ($_POST["city"] !== "null") {
     $sql_distribution .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
-  //$sql_distribution .= " LIMIT 50";
+  $sql_distribution .= " LIMIT 200";
 
   $sql_store = <<<EOT
 SELECT G.name, G.price, G.genre, G.sid, L.city, G.quantity, G.numRented
@@ -73,7 +73,7 @@ EOT;
   if ($_POST["city"] !== "null") {
     $sql_store .= " AND L.city = '" . stripping($_POST["city"]) . "'";
   }
-  //$sql_store .= " LIMIT 50";
+  $sql_store .= " LIMIT 200";
 
   //results
   $result_distribution = $conn->query($sql_distribution);
