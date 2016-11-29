@@ -98,19 +98,19 @@
       <?php
 
         //name
-        if (isset($_POST['filter-name'])) {
+        if (isset($_POST['filter-name']) && $_POST['filter-name'] !== "") {
           echo "var name = \"" . $_POST['filter-name'] . "\";";
         }
         else echo "var name = \"null\";";
 
         //genre
-        if (isset($_POST['filter-genre'])) {
+        if (isset($_POST['filter-genre']) && $_POST['filter-genre'] !== "") {
           echo "var genre = \"" . $_POST['filter-genre'] . "\";";
         }
         else echo "var genre = \"null\";";
 
         //city
-        if (isset($_POST['filter-city'])) {
+        if (isset($_POST['filter-city']) && $_POST['filter-city'] !== "") {
           echo "var city = \"" . $_POST['filter-city'] . "\";";
         }
         else echo "var city = \"null\";";
