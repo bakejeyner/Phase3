@@ -98,22 +98,23 @@
       <?php
 
         echo 'console.log("Current PHP version: ' . phpversion() . '");';
+        echo 'console.log("' . json_encode($_POST) . '");';
 
         //name
-        if (isset($_POST['name'])) {
-          echo "var name = \"" . $_POST['name'] . "\";";
+        if (isset($_POST['filter-name'])) {
+          echo "var name = \"" . $_POST['filter-name'] . "\";";
         }
         else echo "var name = \"null\";";
 
         //genre
-        if (isset($_POST['genre'])) {
-          echo "var genre = \"" . $_POST['genre'] . "\";";
+        if (isset($_POST['filter-genre'])) {
+          echo "var genre = \"" . $_POST['filter-genre'] . "\";";
         }
         else echo "var genre = \"null\";";
 
         //city
-        if (isset($_POST['city'])) {
-          echo "var city = \"" . $_POST['city'] . "\";";
+        if (isset($_POST['filter-city'])) {
+          echo "var city = \"" . $_POST['filter-city'] . "\";";
         }
         else echo "var city = \"null\";";
       }
