@@ -11,7 +11,7 @@
     return ($data);
   }
 
-  $uname = stripping($_POST["uname"]);
+  $uname = stripping($_SESSION["uname"]);
   $did = stripping($_POST["did"]);
   $name = stripping($_POST["name"]);
 
