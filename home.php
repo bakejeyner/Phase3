@@ -117,7 +117,6 @@
           echo "var city = \"" . $_POST['filter-city'] . "\";";
         }
         else echo "var city = \"null\";";
-      }
 
       ?>
 
